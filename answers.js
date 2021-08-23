@@ -111,7 +111,7 @@ async function getGame(ua, gameID){
             console.log('|'.blue, '-----------------------------------'.blue)
             console.log('|'.blue, `Question Name: ${correctAnswer[i]['question']}`.yellow)
             console.log('|'.blue, `Question Time Limit: ${correctAnswer[i]['timeLimit']}s`.yellow)
-            console.log('|'.blue, `Question Answer(s): ${correctAnswer[i]['correctAnswers']}`.green)
+            console.log('|'.blue, `Question Correct Answer(s): ${correctAnswer[i]['correctAnswers']}`.green)
             console.log('|'.blue, '-----------------------------------'.blue)
         }
         start()
