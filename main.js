@@ -1,14 +1,16 @@
-const got = require('got')
-const colors = require('colors')
+//module imports
+const got = require('got');
+const colors = require('colors');
 const tough = require('tough-cookie');
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const prompt = require('prompt-sync')();
-function rand(min, max) {
-    let randomNum = Math.random() * (max - min) + min;
-    return Math.floor(randomNum);
-}
+
+//global functions
+function rand(min, max) {return Math.floor(Math.random() * (max - min) + min)};
+
+//global variables
 const cookieJar = new tough.CookieJar();
-const UA = [
+const userAgents = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
     'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
@@ -114,7 +116,7 @@ async function getGame(ua, gameID){
             console.log('|'.blue, `Question Correct Answer(s): ${correctAnswer[i]['correctAnswers']}`.green)
             console.log('|'.blue, '-----------------------------------'.blue)
         }
-        start()
+        main()
     }
     else {
         console.log('|'.blue, `Failed to get questions [${getGameReq.statusCode}]`.red)
@@ -123,7 +125,7 @@ async function getGame(ua, gameID){
         console.log(error)
     }
 }
-async function start(){
+async function main(){
     console.log('|'.blue, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'.brightBlue)
     console.log('|'.blue, '--------------------------------------'.brightBlue)
     console.log('|'.blue, `Blooket Scripts`.brightBlue)
@@ -135,6 +137,6 @@ async function start(){
     console.log('|'.blue, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'.brightBlue)
     var code = prompt('|'.blue + ' ' + 'Enter a game code:'.cyan.underline + ' ')
     console.log('|'.blue, 'Getting Answers...'.brightBlue)
-    getSession(code, UA[rand(0, UA.length - 1)])
+    getSession(code, UA[rand(0, userAgents.length - 1)])
 }
-start()
+main()
